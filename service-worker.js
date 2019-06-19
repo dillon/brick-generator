@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/brick-generator/precache-manifest.20d68cc99ca5a4bd1e10e048a8834793.js"
+  "/brick-generator/precache-manifest.814707c32a1bc3026e1e2e933d9198fd.js"
 );
 
 self.addEventListener('message', (event) => {
