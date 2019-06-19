@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import ColorPicker from './ColorPicker';
 import ColorSlide from './ColorSlide';
 import CustomColorPicker from './CustomColorPicker';
-import { removeFromColorArray, addToColorArray } from '../../../../actions';
+import {
+  removeFromColorArray,
+  addToColorArray,
+  toggleBorderTransparent
+} from '../../../../actions';
 // import styles from './styles'
 
 class ColorPickersContainer extends React.Component {
@@ -19,16 +23,38 @@ class ColorPickersContainer extends React.Component {
     dispatch(addToColorArray(random()));
   };
 
+  handleToggleBorderTransparent = () => {
+    const { dispatch } = this.props;
+    dispatch(toggleBorderTransparent());
+  };
+
   render() {
-    const { colorHueMode, saturation, lightness, colorArray } = this.props;
+    const {
+      colorHueMode,
+      saturation,
+      lightness,
+      colorArray,
+      borderTransparent
+    } = this.props;
     return (
       <div>
         <h2>Mortar Color</h2>
-        <ColorPicker
-          colorName="mortarColor"
-          header="Mortar Color"
-          {...this.props}
-        />
+        <div style={{ margin: '20px 0px' }}>
+          <span style={{ margin: '0px 10px 0px 0px' }}>Transparent Mortar</span>
+          <input
+            type="checkbox"
+            name="borderTransparent"
+            checked={borderTransparent}
+            onChange={this.handleToggleBorderTransparent}
+          />
+        </div>
+        {!borderTransparent && (
+          <ColorPicker
+            colorName="mortarColor"
+            header="Mortar Color"
+            {...this.props}
+          />
+        )}
         <h2>Colors</h2>
         {colorHueMode === 'two-point scale' && (
           <div style={{ display: 'flex' }}>

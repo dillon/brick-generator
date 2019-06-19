@@ -23,7 +23,8 @@ export default class extends Component {
       colorHueMode,
       mortarColor,
       staggerBricks,
-      save
+      save,
+      borderTransparent,
     } = this.props;
     let { canvasHeight, canvasWidth } = this.props;
     if (trimHeight)
@@ -43,7 +44,7 @@ export default class extends Component {
       saturation,
       lightness,
       colorHueMode,
-      colorMode
+      colorMode,
     });
     return (
       <div>
@@ -70,7 +71,7 @@ export default class extends Component {
         <svg
           id="brickwall"
           width={canvasWidth}
-          style={{ backgroundColor: mortarColor }}
+          style={borderTransparent ? {} : { backgroundColor: mortarColor }}
           height={canvasHeight}
           preserveAspectRatio="xMinYMax meet"
         >

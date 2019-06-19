@@ -13,11 +13,14 @@ import {
   SET_HSL,
   ADD_TO_COLOR_ARRAY,
   REMOVE_FROM_COLOR_ARRAY,
-  EDIT_COLOR_IN_ARRAY
+  EDIT_COLOR_IN_ARRAY,
+  TOGGLE_BORDER_TRANSPARENT
 } from '../actions';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case TOGGLE_BORDER_TRANSPARENT:
+      return { ...state, borderTransparent: !state.borderTransparent };
     case TOGGLE_STAGGER_BRICKS:
       return { ...state, staggerBricks: !state.staggerBricks };
     case TOGGLE_BRICK_POPUP:

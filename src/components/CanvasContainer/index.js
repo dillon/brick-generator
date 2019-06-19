@@ -45,7 +45,8 @@ const mapStateToProps = ({
   lightness,
   secondColor,
   colorHueMode,
-  colorMode
+  colorMode,
+  borderTransparent
 }) => ({
   staggerBricks,
   canvasHeight,
@@ -62,7 +63,8 @@ const mapStateToProps = ({
   saturation,
   lightness,
   colorHueMode,
-  colorMode
+  colorMode,
+  borderTransparent
 });
 
 export default connect(mapStateToProps)(ColorPickersContainer);

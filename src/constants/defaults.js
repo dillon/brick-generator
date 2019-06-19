@@ -34,5 +34,6 @@ export const initialState = {
   colorHueMode: 'two-point scale',
   colorMode: 'rgb',
   trimHeight: true,
-  trimWidth: true
+  trimWidth: true,
+  borderTransparent: true,
 };

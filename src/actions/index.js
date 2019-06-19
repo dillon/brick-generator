@@ -12,6 +12,11 @@ export const SET_COLOR_HUE_MODE = 'SET_COLOR_HUE_MODE';
 export const ADD_TO_COLOR_ARRAY = 'ADD_TO_COLOR_ARRAY';
 export const REMOVE_FROM_COLOR_ARRAY = 'REMOVE_FROM_COLOR_ARRAY';
 export const EDIT_COLOR_IN_ARRAY = 'EDIT_COLOR_IN_ARRAY';
+export const TOGGLE_BORDER_TRANSPARENT = 'TOGGLE_BORDER_TRANSPARENT';
+
+export const toggleBorderTransparent = () => ({
+  type: TOGGLE_BORDER_TRANSPARENT
+})
 
 export function toggleStaggerBricks() {
   return {
