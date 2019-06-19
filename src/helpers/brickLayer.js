@@ -50,10 +50,12 @@ export default function brickLayer({
   for (let y = 0; y <= yStartMaximum; y += yIncrement) {
     for (let x = xStart; x <= xStartMaximum; x += xIncrement) {
       const fill = scale(Math.random());
-      if (staggerBricks && i % 2 !== 0) {
-        coordinates.push({ x, y, fill });
-      } else {
-        coordinates.push({ x: x + brickWidth / 2, y, fill });
+      if (fill) {
+        if (staggerBricks && i % 2 !== 0) {
+          coordinates.push({ x, y, fill });
+        } else {
+          coordinates.push({ x: x + brickWidth / 2, y, fill });
+        }
       }
     }
     i += 1;

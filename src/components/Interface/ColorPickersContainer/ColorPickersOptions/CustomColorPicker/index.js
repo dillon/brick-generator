@@ -7,7 +7,8 @@ export default class extends React.Component {
     super(props);
     this.state = {
       displayColorPicker: false,
-      backgroundColor: ''
+      backgroundColor: '',
+      colorTransparent: false
     };
   }
 
@@ -17,9 +18,15 @@ export default class extends React.Component {
   }
 
   handleClick = () => {
-    const { displayColorPicker, backgroundColor } = this.state;
-    if (displayColorPicker) {
-      const { index, dispatch } = this.props;
+    const {
+      displayColorPicker,
+      backgroundColor,
+      colorTransparent
+    } = this.state;
+    const { index, dispatch } = this.props;
+    if (colorTransparent) {
+      dispatch(editColorInArray({ index, color: false }))
+    } else if (displayColorPicker) {
       dispatch(editColorInArray({ index, color: backgroundColor }));
     }
     this.setState(prevState => ({
@@ -31,6 +38,10 @@ export default class extends React.Component {
 
   handleOnChangeComplete = color => {
     this.setState({ backgroundColor: color.hex });
+  };
+
+  handleToggleColorTransparent = ({ target: { checked } }) => {
+    this.setState({ colorTransparent: checked });
   };
 
   render() {
@@ -46,13 +57,15 @@ export default class extends React.Component {
         padding: '5px',
         background: '#fff',
         borderRadius: '1px',
-        boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
         display: 'inline-block',
         cursor: 'pointer'
       },
       popover: {
+        boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+        borderRadius: '1px',
         position: 'absolute',
-        zIndex: '2'
+        zIndex: '2',
+        backgroundColor: 'white'
       },
       cover: {
         display: 'none',
@@ -62,7 +75,7 @@ export default class extends React.Component {
         left: '0px'
       }
     };
-    const { displayColorPicker } = this.state;
+    const { displayColorPicker, colorTransparent } = this.state;
 
     return (
       <div>
@@ -75,31 +88,27 @@ export default class extends React.Component {
               type="submit"
               style={styles.cover}
               onClick={this.handleClose}
-            >Save</button>
-            <SketchPicker
-              color={backgroundColor}
-              onChangeComplete={this.handleOnChangeComplete}
-            />
+            >
+              Save
+            </button>
+            <div style={{ margin: 10 }}>
+              <span style={{ margin: '0px 10px 0px 0px' }}>Transparent: </span>
+              <input
+                type="checkbox"
+                name="borderTransparent"
+                checked={colorTransparent}
+                onChange={this.handleToggleColorTransparent}
+              />
+            </div>
+            {!colorTransparent && (
+              <SketchPicker
+                color={backgroundColor}
+                onChangeComplete={this.handleOnChangeComplete}
+              />
+            )}
           </div>
         ) : null}
       </div>
     );
   }
 }
-
-// export default class Component extends React.Component {
-//   render() {
-//     // eslint-disable-next-line react/destructuring-assignment
-//     const color = this.props[this.props.colorName];
-//     const { header } = this.props;
-//     return (
-//       <StyledPhotoshopPickerDivContainer>
-//         <PhotoshopPicker
-//           header={header}
-//           color={color}
-//           onChangeComplete={this.handleOnChangeComplete}
-//         />
-//       </StyledPhotoshopPickerDivContainer>
-//     );
-//   }
-// }
